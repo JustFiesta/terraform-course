@@ -23,5 +23,4 @@ variable "user_data" {
 }
 
 variable "common_tags" {
-  type = map(string)
 }
