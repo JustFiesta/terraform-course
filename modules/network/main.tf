@@ -7,7 +7,7 @@ resource "aws_vpc" "tf-vpc" {
 resource "aws_subnet" "tf-subnet" {
   vpc_id            = aws_vpc.tf-vpc.id
   cidr_block        = "172.16.10.0/24"
-  availability_zone = "{$var.region}a"
+  availability_zone = "${var.region}a"
   depends_on        = [aws_vpc.tf-vpc]
 
   tags = merge(var.common_tags, { Name = "tf-subnet" })
@@ -46,9 +46,7 @@ resource "aws_security_group_rule" "tf-http_rule" {
 }
 
 resource "aws_eip" "tf-public-ip" {
-  vpc               = aws_vpc.tf-vpc.id
-
-  depends_on        = [aws_security_group.tf-sec-group]
+  vpc = true
 
   tags = merge(var.common_tags, { Name = "tf-public-ip" })
 }
