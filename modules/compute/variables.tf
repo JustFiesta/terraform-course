@@ -7,8 +7,8 @@ variable "vpc_id" {
   type = string
 }
 
-variable "subnet_id" {
-  type = string
+variable "subnet_ids" {
+  type = list(string)
 }
 
 variable "sec_group_id" {

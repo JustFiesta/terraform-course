@@ -5,14 +5,19 @@ resource "aws_vpc" "tf-vpc" {
   tags = merge(var.common_tags, { Name = "tf-vpc" })
 }
 
-# Create subnet for VPC
-resource "aws_subnet" "tf-subnet" {
-  vpc_id            = aws_vpc.tf-vpc.id
-  cidr_block        = "172.16.10.0/24"
+# Create subnets for VPC
+resource "aws_subnet" "tf-subnet-a" {
+  vpc_id = aws_vpc.tf-vpc.id
+  cidr_block = "172.16.10.0/24"
   availability_zone = "${var.region}a"
-  depends_on        = [aws_vpc.tf-vpc]
+  tags = merge(var.common_tags, { Name = "tf-subnet-a" })
+}
 
-  tags = merge(var.common_tags, { Name = "tf-subnet" })
+resource "aws_subnet" "tf-subnet-b" {
+  vpc_id = aws_vpc.tf-vpc.id
+  cidr_block = "172.16.20.0/24"
+  availability_zone = "${var.region}b"
+  tags = merge(var.common_tags, { Name = "tf-subnet-b" })
 }
 
 # Create secirity group for VPC
