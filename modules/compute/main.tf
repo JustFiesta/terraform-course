@@ -27,7 +27,13 @@ resource "aws_autoscaling_group" "tf-asg" {
     version = "$Latest"
   }
 
-  tags = merge(var.common_tags, { Name = "tf-auto-scaling-group" })
+  tags = [
+    for key, value in merge(var.common_tags, { Name = "tf-auto-scaling-group" }) : {
+      key                 = key
+      value               = value
+      propagate_at_launch = true
+    }
+  ]
 }
 
 # Launch VM's
