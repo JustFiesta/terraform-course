@@ -1,5 +1,5 @@
 resource "aws_instance" "tf-tmp-instance" {
-  ami           = "ami-005e54dee72cc1d00"
+  ami           = "ami-0ac67a26390dc374d"
   instance_type = "t3.micro"
   user_data     = var.user_data
   
