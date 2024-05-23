@@ -65,8 +65,8 @@ resource "aws_lb" "tf-lb" {
   name               = "tf-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [var.sec_group_id]
-  subnets            = var.subnet_ids
+  security_groups    = aws_security_group.tf-sec-group.id
+  subnets            = [aws_subnet.tf-subnet-a.id, aws_subnet.tf-subnet-b.id]
   tags = merge(var.common_tags, { Name = "tf-lb" })
 }
 
@@ -75,7 +75,7 @@ resource "aws_lb_target_group" "tf-tg" {
   name     = "tf-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  vpc_id   = aws_vpc.tf-vpc.id
     health_check {
     path                = "/"
     interval            = 30
