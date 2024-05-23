@@ -32,8 +32,7 @@ resource "aws_security_group" "tf-sec-group" {
 }
 
 # Create and attach security rules
-resource "aws_security_group_rule" "tf-ssh_rule" {
-  type              = "ingress"
+resource "aws_vpc_security_group_ingress_rule" "tf-ssh_rule" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
@@ -43,8 +42,7 @@ resource "aws_security_group_rule" "tf-ssh_rule" {
   depends_on        = [aws_security_group.tf-sec-group]
 }
 
-resource "aws_security_group_rule" "tf-http_rule" {
-  type              = "ingress"
+resource "aws_vpc_security_group_ingress_rule" "tf-http_rule" {
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
