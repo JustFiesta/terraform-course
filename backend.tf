@@ -1,9 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = var.s3-bucket
+    bucket = "tf-assesment-156231"
     key    = "terraform/state"
-    region = var.region
-
-    tags = merge(var.common_tags, { Name = "tf-s3" })
+    region = "eu-west-1"
   }
 }
