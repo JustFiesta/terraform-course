@@ -36,7 +36,7 @@ resource "aws_vpc_security_group_ingress_rule" "tf-ssh_rule" {
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
-  cidr_ipv4         = ["0.0.0.0/0"]
+  cidr_ipv4         = "0.0.0.0/0"
   security_group_id = aws_security_group.tf-sec-group.id
 
   depends_on        = [aws_security_group.tf-sec-group]
@@ -46,7 +46,7 @@ resource "aws_vpc_security_group_ingress_rule" "tf-http_rule" {
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
-  cidr_ipv4         = ["0.0.0.0/0"]
+  cidr_ipv4         = "0.0.0.0/0"
   security_group_id = aws_security_group.tf-sec-group.id
   
   depends_on        = [aws_security_group.tf-sec-group]
@@ -63,7 +63,7 @@ resource "aws_lb" "tf-lb" {
   name               = "tf-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = aws_security_group.tf-sec-group.id
+  security_groups    = [aws_security_group.tf-sec-group.id]
   subnets            = [aws_subnet.tf-subnet-a.id, aws_subnet.tf-subnet-b.id]
   tags = merge(var.common_tags, { Name = "tf-lb" })
 }
