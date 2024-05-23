@@ -32,7 +32,7 @@ resource "aws_autoscaling_group" "tf-asg" {
   desired_capacity     = 3
   max_size             = 3
   min_size             = 3
-  vpc_zone_identifier  = [module.network.subnet_ids]
+  vpc_zone_identifier  = var.subnet_ids
   launch_template {
     id      = aws_launch_template.tf-launch-template.id
     version = "$Latest"
