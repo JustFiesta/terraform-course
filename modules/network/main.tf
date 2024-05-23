@@ -5,6 +5,12 @@ resource "aws_vpc" "tf-vpc" {
   tags = merge(var.common_tags, { Name = "tf-vpc" })
 }
 
+# Create Internet Gateway
+resource "aws_internet_gateway" "tf-igw" {
+  vpc_id = aws_vpc.tf-vpc.id
+  tags = merge(var.common_tags, { Name = "tf-igw" })
+}
+
 # Create subnets for VPC
 resource "aws_subnet" "tf-subnet-a" {
   vpc_id = aws_vpc.tf-vpc.id
