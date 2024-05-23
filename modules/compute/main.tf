@@ -38,11 +38,19 @@ resource "aws_autoscaling_group" "tf-asg" {
     version = "$Latest"
   }
 
-  tags = [
-    for key, value in merge(var.common_tags, { Name = "tf-auto-scaling-group" }) : {
-      key                 = key
-      value               = value
-      propagate_at_launch = true
-    }
-  ]
+  tag {
+    key                 = "Owner"
+    value               = "mbocak"
+    propagate_at_launch = true
+  }
+  tag {
+    key                 = "Project"
+    value               = "Internship_DevOps"
+    propagate_at_launch = true
+  }
+  tag {
+    key                 = "Name"
+    value               = "tf-asg"
+    propagate_at_launch = true
+  }
 }
