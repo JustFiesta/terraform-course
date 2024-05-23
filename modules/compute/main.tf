@@ -22,8 +22,6 @@ resource "aws_launch_configuration" "tf-webserver-lc" {
   name          = "webserver-lc"
   image_id      = aws_ami_from_instance.tf-ami-tmp-instance.id
   instance_type = "t3.micro"
-
-  tags = merge(var.common_tags, { Name = "tf-launch-template" })
 }
 
 # Create autoscaling group
