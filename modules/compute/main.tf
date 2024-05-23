@@ -18,12 +18,11 @@ resource "aws_ami_from_instance" "tf-ami-tmp-instance" {
   tags = merge(var.common_tags, { Name = "tf-ami-tmp-instance" })
 }
 
-resource "aws_launch_template" "tf-launch-template" {
-  name_prefix   = "tf-launch-template"
+resource "aws_launch_configuration" "tf-webserver-lc" {
+  name          = "webserver-lc"
   image_id      = aws_ami_from_instance.tf-ami-tmp-instance.id
   instance_type = "t3.micro"
-  vpc_security_group_ids = [var.sec_group_id]
-  
+
   tags = merge(var.common_tags, { Name = "tf-launch-template" })
 }
 
@@ -33,10 +32,7 @@ resource "aws_autoscaling_group" "tf-asg" {
   max_size             = 3
   min_size             = 3
   vpc_zone_identifier  = var.subnet_ids
-  launch_template {
-    id      = aws_launch_template.tf-launch-template.id
-    version = "$Latest"
-  }
+  launch_configuration = aws_launch_configuration.tf-webserver-lc.id
 
   tag {
     key                 = "Owner"
