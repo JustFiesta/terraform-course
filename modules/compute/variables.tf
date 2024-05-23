@@ -23,7 +23,7 @@ variable "user_data" {
 	sudo yum install httpd
 	sudo systemctl enable httpd
 	sudo systemctl start httpd
-    echo "<html><h1>Hello, World!</h1></html>" > /var/www/html/index.html
+    echo "<html><h1>Welcome to Server $(hostname)</h1></html>" | sudo tee /var/www/html/index.html
 	EOF
 }
 

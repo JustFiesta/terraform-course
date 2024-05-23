@@ -23,8 +23,10 @@ module "compute" {
   source = "./modules/compute"
 
   vpc_id       = module.network.vpc_id
-  subnet_ids  = module.network.subnet_ids
+  subnet_ids   = module.network.subnet_ids
   sec_group_id = module.network.sec_group_id
+
+  depends_on   = [module.network]
 
   common_tags  = var.common_tags
 }

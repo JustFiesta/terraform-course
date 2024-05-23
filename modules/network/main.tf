@@ -59,3 +59,42 @@ resource "aws_eip" "tf-public-ip" {
 
   tags = merge(var.common_tags, { Name = "tf-public-ip" })
 }
+
+# Create Application Load Balancer
+resource "aws_lb" "tf-lb" {
+  name               = "tf-lb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [var.sec_group_id]
+  subnets            = var.subnet_ids
+  tags = merge(var.common_tags, { Name = "tf-lb" })
+}
+
+# Create health check target group
+resource "aws_lb_target_group" "tf-tg" {
+  name     = "tf-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+    health_check {
+    path                = "/"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+    matcher             = "200-299"
+  }
+  tags = merge(var.common_tags, { Name = "tf-target-group" })
+}
+
+# Create listener
+resource "aws_lb_listener" "tf-listener" {
+  load_balancer_arn = aws_lb.tf-lb.arn
+  port              = 80
+  protocol          = "HTTP"
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tf-tg.arn
+  }
+  tags = merge(var.common_tags, { Name = "tf-listener" })
+}
