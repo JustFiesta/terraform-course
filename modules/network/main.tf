@@ -1,14 +1,11 @@
 # Create VPC
 resource "aws_vpc" "tf-vpc" {
   cidr_block        = "172.16.0.0/16"
-
-  tags = merge(var.common_tags, { Name = "tf-vpc" })
 }
 
 # Create Internet Gateway
 resource "aws_internet_gateway" "tf-igw" {
   vpc_id = aws_vpc.tf-vpc.id
-  tags = merge(var.common_tags, { Name = "tf-igw" })
 }
 
 # Create subnets for VPC
@@ -16,14 +13,12 @@ resource "aws_subnet" "tf-subnet-a" {
   vpc_id = aws_vpc.tf-vpc.id
   cidr_block = "172.16.10.0/24"
   availability_zone = "${var.region}a"
-  tags = merge(var.common_tags, { Name = "tf-subnet-a" })
 }
 
 resource "aws_subnet" "tf-subnet-b" {
   vpc_id = aws_vpc.tf-vpc.id
   cidr_block = "172.16.20.0/24"
   availability_zone = "${var.region}b"
-  tags = merge(var.common_tags, { Name = "tf-subnet-b" })
 }
 
 # Create secirity group for VPC
@@ -33,8 +28,6 @@ resource "aws_security_group" "tf-sec-group" {
 
   vpc_id            = aws_vpc.tf-vpc.id
   depends_on        = [aws_vpc.tf-vpc]
-
-  tags = merge(var.common_tags, { Name = "tf-sec-group" })
 }
 
 # Create and attach security rules
@@ -60,8 +53,6 @@ resource "aws_vpc_security_group_ingress_rule" "tf-http_rule" {
 
 resource "aws_eip" "tf-public-ip" {
   vpc = true
-
-  tags = merge(var.common_tags, { Name = "tf-public-ip" })
 }
 
 # Create Application Load Balancer
@@ -71,7 +62,6 @@ resource "aws_lb" "tf-lb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.tf-sec-group.id]
   subnets            = [aws_subnet.tf-subnet-a.id, aws_subnet.tf-subnet-b.id]
-  tags = merge(var.common_tags, { Name = "tf-lb" })
 }
 
 # Create health check target group
@@ -88,7 +78,6 @@ resource "aws_lb_target_group" "tf-tg" {
     unhealthy_threshold = 2
     matcher             = "200-299"
   }
-  tags = merge(var.common_tags, { Name = "tf-target-group" })
 }
 
 # Create listener
@@ -100,5 +89,4 @@ resource "aws_lb_listener" "tf-listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.tf-tg.arn
   }
-  tags = merge(var.common_tags, { Name = "tf-listener" })
 }

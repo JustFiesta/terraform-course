@@ -26,7 +26,3 @@ variable "user_data" {
     echo "<html><h1>Welcome to Server $(hostname)</h1></html>" | sudo tee /var/www/html/index.html
 	EOF
 }
-
-variable "common_tags" {
-    type = map(string)
-}

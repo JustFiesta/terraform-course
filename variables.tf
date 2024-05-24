@@ -8,14 +8,6 @@ variable "s3-bucket" {
   default = "bucket-link"
 }
 
-variable "common_tags" {
-  type = map(string)
-  default = {
-    Owner   = "mbocak"
-    Project = "Internship_DevOps"
-  }
-}
-
 # Acces IP range for load balancer
 variable "allowed_ip_range" {
   description = "The IP range allowed to access the load balancer"

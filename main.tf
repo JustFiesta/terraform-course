@@ -11,12 +11,17 @@ terraform {
 
 provider "aws" {
   region = var.region
+  default_tags {
+    tags = {
+      Name        = "tf-assesment"
+      Owner       = "mbocak"
+      Project     = "Internship_DevOps"
+    }
+  }
 }
 
 module "network" {
   source = "./modules/network"
-
-  common_tags  = var.common_tags
 }
 
 module "compute" {
@@ -27,6 +32,4 @@ module "compute" {
   sec_group_id = module.network.sec_group_id
 
   depends_on   = [module.network]
-
-  common_tags  = var.common_tags
 }

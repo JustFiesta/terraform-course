@@ -4,8 +4,6 @@ resource "aws_instance" "tf-tmp-instance" {
   user_data     = var.user_data
   subnet_id              = var.subnet_ids[0]
   vpc_security_group_ids = [var.sec_group_id]
-
-  tags = merge(var.common_tags, { Name = "tf-tmp-instance" })
 }
 
 # Create image from tmp instance
@@ -14,8 +12,6 @@ resource "aws_ami_from_instance" "tf-ami-tmp-instance" {
   source_instance_id = aws_instance.tf-tmp-instance.id
 
   depends_on         = [aws_instance.tf-tmp-instance]
-
-  tags = merge(var.common_tags, { Name = "tf-ami-tmp-instance" })
 }
 
 resource "aws_launch_configuration" "tf-webserver-lc" {
