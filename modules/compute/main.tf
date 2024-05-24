@@ -27,20 +27,4 @@ resource "aws_autoscaling_group" "tf-asg" {
   min_size             = 3
   vpc_zone_identifier  = var.subnet_ids
   launch_configuration = aws_launch_configuration.tf-webserver-lc.id
-
-  tag {
-    key                 = "Owner"
-    value               = "mbocak"
-    propagate_at_launch = true
-  }
-  tag {
-    key                 = "Project"
-    value               = "Internship_DevOps"
-    propagate_at_launch = true
-  }
-  tag {
-    key                 = "Name"
-    value               = "tf-asg"
-    propagate_at_launch = true
-  }
 }
