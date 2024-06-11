@@ -10,10 +10,10 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
+  region    = var.region
   default_tags {
     tags = {
-      Name        = "tf-assesment"
+      Name        = "tf_assesment"
       Owner       = "mbocak"
       Project     = "Internship_DevOps"
     }

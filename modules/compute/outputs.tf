@@ -1,3 +1,4 @@
 output "ami_id" {
-  value = aws_ami_from_instance.tf-ami-tmp-instance.id
+  description = "AMI id from temporary instance"
+  value = aws_ami_from_instance.tf_ami_tmp_instance.id
 }
