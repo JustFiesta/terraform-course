@@ -69,13 +69,14 @@ resource "aws_lb_target_group" "tf-tg" {
   name     = "tf-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = aws_vpc.tf-vpc.id
-    health_check {
+  vpc_id   = aws_vpc.this.id
+  deregistration_delay = 10
+  health_check {
     path                = "/"
     interval            = 30
     timeout             = 5
-    healthy_threshold   = 5
-    unhealthy_threshold = 2
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
     matcher             = "200-299"
   }
 }
