@@ -1,8 +1,18 @@
-# Terraform excercises
+# Terraform Learning Repository
 
-Training for Infrastructure Management course with Terraform.
+Welcome to my Terraform learning repository. This repository is dedicated to my personal journey of learning and practicing Terraform, and IaC.
 
-## Task description
+## Introduction
+This repository contains various exercises and examples that I am using to understand and master Terraform. Terraform allows me to define and provision infrastructure using a high-level configuration language.
 
-Was tasked to make basic VPC with EC2 instances in Autoscaling group.  
-It was made to test my understaning of Terraform as a tool and try to use its native solutions - variables, inputs, etc.
+## Prerequisites
+Before I begin, I need to ensure I have met the following requirements:
+- Installed [Terraform](https://www.terraform.io/downloads.html).
+- Understanding of infrastructure and cloud services.
+
+
+## Resources
+Here are some resources that I find helpful for learning Terraform:
+- [Terraform Documentation](https://www.terraform.io/docs/index.html)
+- [HashiCorp Learn](https://learn.hashicorp.com/terraform)
+- [Terraform GitHub Repository](https://github.com/hashicorp/terraform)
