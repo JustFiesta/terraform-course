@@ -36,3 +36,13 @@ Example outputs are present inside `tools-outputs` directory.
     ```
   
     To ignore any regule shown one can use `# tfsec:ignore:AWS002 - Comment_Here` in given resource
+
+5. Run pre-commit hooks
+
+This should be ran via `.venv/bin/` as there will its binary reside.
+
+```shell
+pre-commit autoupdate
+pre-commit install --install-hooks
+pre-commit run --all-files
+```
