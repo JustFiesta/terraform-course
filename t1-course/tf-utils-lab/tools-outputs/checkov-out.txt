@@ -1,0 +1,106 @@
+
+       _               _
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V /
+  \___|_| |_|\___|\___|_|\_\___/ \_/
+
+By Prisma Cloud | version: 3.2.386
+
+terraform scan results:
+
+Passed checks: 4, Failed checks: 3, Skipped checks: 0
+
+Check: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+        PASSED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1
+Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+        PASSED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+        PASSED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+Check: CKV_AWS_88: "EC2 instance should not have public IP."
+        PASSED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12
+Check: CKV_AWS_126: "Ensure that detailed monitoring is enabled for EC2 instances"
+        FAILED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances
+
+                1  | resource "aws_instance" "this" {
+                2  |   ami           = var.ami
+                3  |   instance_type = var.instance_type
+                4  |   subnet_id     = var.subnet_id
+                5  |   tags = {
+                6  |     Name = var.instance_name
+                7  |   }
+                8  |
+                9  |   metadata_options {
+                10 |     http_tokens = "required"
+                11 |   }
+                12 |
+                13 |   root_block_device {
+                14 |     encrypted = true
+                15 |   }
+                16 |
+                17 |   lifecycle {
+                18 |     ignore_changes = [ami]
+                19 |   }
+                20 | }
+
+Check: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+        FAILED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+
+                1  | resource "aws_instance" "this" {
+                2  |   ami           = var.ami
+                3  |   instance_type = var.instance_type
+                4  |   subnet_id     = var.subnet_id
+                5  |   tags = {
+                6  |     Name = var.instance_name
+                7  |   }
+                8  |
+                9  |   metadata_options {
+                10 |     http_tokens = "required"
+                11 |   }
+                12 |
+                13 |   root_block_device {
+                14 |     encrypted = true
+                15 |   }
+                16 |
+                17 |   lifecycle {
+                18 |     ignore_changes = [ami]
+                19 |   }
+                20 | }
+
+Check: CKV2_AWS_41: "Ensure an IAM role is attached to EC2 instance"
+        FAILED for resource: aws_instance.this
+        File: /main.tf:1-20
+        Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance
+
+                1  | resource "aws_instance" "this" {
+                2  |   ami           = var.ami
+                3  |   instance_type = var.instance_type
+                4  |   subnet_id     = var.subnet_id
+                5  |   tags = {
+                6  |     Name = var.instance_name
+                7  |   }
+                8  |
+                9  |   metadata_options {
+                10 |     http_tokens = "required"
+                11 |   }
+                12 |
+                13 |   root_block_device {
+                14 |     encrypted = true
+                15 |   }
+                16 |
+                17 |   lifecycle {
+                18 |     ignore_changes = [ami]
+                19 |   }
+                20 | }

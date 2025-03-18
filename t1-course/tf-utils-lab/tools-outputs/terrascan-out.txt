@@ -1,0 +1,106 @@
+
+
+Scan Errors -
+
+        IaC Type            :   docker
+        Directory           :   /home/ubuntu/tf-utils-module
+        Error Message       :   Dockerfile not found in the directory /home/ubuntu/tf-utils-module
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/bin
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/bin/hcl2tojson', err: error while resolving intrinsic functions, error invalid JSON: invalid character '#' looking for beginning of value
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/checkov-out.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/checkov-out.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/ConfigArgParse-1.7.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/ConfigArgParse-1.7.dist-info/top_level.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/ConfigArgParse-1.7.dist-info/top_level.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/GitPython-3.1.44.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/GitPython-3.1.44.dist-info/top_level.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/GitPython-3.1.44.dist-info/top_level.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/Markdown-3.7.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/Markdown-3.7.dist-info/entry_points.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/Markdown-3.7.dist-info/entry_points.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/Markdown-3.7.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/Markdown-3.7.dist-info/top_level.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/Markdown-3.7.dist-info/top_level.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/MarkupSafe-3.0.2.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/MarkupSafe-3.0.2.dist-info/LICENSE.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/MarkupSafe-3.0.2.dist-info/LICENSE.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/MarkupSafe-3.0.2.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/MarkupSafe-3.0.2.dist-info/top_level.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/MarkupSafe-3.0.2.dist-info/top_level.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/PyYAML-6.0.2.dist-info
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/PyYAML-6.0.2.dist-info/top_level.txt', err: unsupported extension for file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/PyYAML-6.0.2.dist-info/top_level.txt
+
+        -----------------------------------------------------------------------
+
+        IaC Type            :   cft
+        Directory           :   /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages
+        Error Message       :   error while loading iac file '/home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/_yaml', err: unable to read file /home/ubuntu/tf-utils-module/.venv/lib/python3.12/site-packages/_yaml
+
+...
+
+(there was like milion lines)
+
+...
+
+
+Violation Details -
+    
+        Description    :        Ensure that detailed monitoring is enabled for EC2 instances.
+        File           :        main.tf
+        Module Name    :        root
+        Plan Root      :        ./
+        Line           :        1
+        Severity       :        HIGH
+
+        -----------------------------------------------------------------------
+
+        Description    :        Ensure that your AWS application is not deployed within the default Virtual Private Cloud in order to follow security best practices
+        File           :        main.tf
+        Module Name    :        root
+        Plan Root      :        ./
+        Line           :        1
+        Severity       :        MEDIUM
+
+        -----------------------------------------------------------------------
+
+
+Scan Summary -
+
+        File/Folder         :   /home/ubuntu/tf-utils-module
+        IaC Type            :   terraform
+        Scanned At          :   2025-03-18 14:33:57.961152373 +0000 UTC
+        Policies Validated  :   5
+        Violated Policies   :   2
+        Low                 :   0
+        Medium              :   1
+        High                :   1

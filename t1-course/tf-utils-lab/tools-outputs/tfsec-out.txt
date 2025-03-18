@@ -1,0 +1,37 @@
+======================================================
+tfsec is joining the Trivy family
+
+tfsec will continue to remain available 
+for the time being, although our engineering 
+attention will be directed at Trivy going forward.
+
+You can read more here: 
+https://github.com/aquasecurity/tfsec/discussions/1994
+======================================================
+ubuntu@ip-172-31-46-186:~/tf-utils-module/.venv$ cat tfsec-out.txt 
+  timings
+  ──────────────────────────────────────────
+  disk i/o             0s
+  parsing              0s
+  adaptation           0s
+  checks               0s
+  total                0s
+
+  counts
+  ──────────────────────────────────────────
+  modules downloaded   0
+  modules processed    0
+  blocks processed     0
+  files read           0
+
+  results
+  ──────────────────────────────────────────
+  passed               0
+  ignored              0
+  critical             0
+  high                 0
+  medium               0
+  low                  0
+
+
+No problems detected!
