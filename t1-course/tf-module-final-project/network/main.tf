@@ -11,4 +11,6 @@ module "load_balancer" {
   vpc_id             = module.vpc.vpc_id
   subnets            = module.vpc.public_subnet_ids
   security_group_ids = var.security_group_ids
+
+  depends_on = [module.vpc]
 }

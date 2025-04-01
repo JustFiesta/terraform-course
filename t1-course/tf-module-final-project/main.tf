@@ -20,13 +20,6 @@ provider "aws" {
   }
 }
 
-module "firewall" {
-  source       = "./firewall"
-  environment  = var.environment
-  project_name = var.project_name
-  vpc_id       = module.network.vpc_id
-}
-
 module "network" {
   source       = "./network"
   environment  = var.environment
