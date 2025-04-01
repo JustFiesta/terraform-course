@@ -39,7 +39,6 @@ resource "aws_subnet" "public" {
 
 resource "aws_eip" "nat" {
   count  = length(var.availability_zones)
-  domain = "vpc"
 
   tags = {
     Name        = "${var.project_name}-nat-eip-${count.index}-${var.environment}"
