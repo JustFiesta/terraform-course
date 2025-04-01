@@ -9,8 +9,3 @@ variable "project_name" {
   type        = string
   default     = "tf-module-final-project"
 }
-
-variable "security_group_ids" {
-  description = "List of security group IDs for the load balancer"
-  type        = list(string)
-}

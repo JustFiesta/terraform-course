@@ -8,23 +8,21 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "private" {
-  count = var.subnet_count
   vpc_id = aws_vpc.main.id
-  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
+  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8)
 
   tags = {
-    Name = "${var.project_name}-private-subnet-${count.index}"
+    Name = "${var.project_name}-private-subnet"
     Environment = var.environment
   }
 }
 
 resource "aws_subnet" "public" {
-  count = var.subnet_count
   vpc_id = aws_vpc.main.id
-  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
+  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8)
 
   tags = {
-    Name = "${var.project_name}-public-subnet-${count.index}"
+    Name = "${var.project_name}-public-subnet"
     Environment = var.environment
   }
 }

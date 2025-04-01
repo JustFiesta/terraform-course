@@ -14,8 +14,7 @@ variable "environment" {
   description = "Environment for the resources"
 }
 
-variable "subnet_count" {
-  description = "Number of subnets to create (per each subnet type)"
-  type        = number
-  default     = 1
+variable "security_group_ids" {
+  description = "List of security group IDs for the load balancer"
+  type        = list(string)
 }
