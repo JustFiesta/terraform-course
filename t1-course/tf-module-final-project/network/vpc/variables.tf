@@ -13,8 +13,3 @@ variable "environment" {
   type = string
   description = "Environment for the resources"
 }
-
-variable "security_group_ids" {
-  description = "List of security group IDs for the load balancer"
-  type        = list(string)
-}
