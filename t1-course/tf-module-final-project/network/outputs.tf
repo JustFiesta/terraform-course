@@ -23,7 +23,7 @@ output "private_subnet_ids" {
   value       = module.vpc.private_subnet_ids
 }
 
-output "security_group_ids" {
+output "security_group_id" {
   description = "The IDs of the security groups"
-  value       = module.vpc.security_group_ids
+  value       = module.vpc.security_group_id
 }
