@@ -1,6 +1,6 @@
 resource "aws_security_group" "main" {
   name   = "${var.project_name}-lb-sg-${var.environment}"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 80

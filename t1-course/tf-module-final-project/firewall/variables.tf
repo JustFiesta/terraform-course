@@ -9,3 +9,8 @@ variable "project_name" {
   type        = string
   default     = "tf-module-final-project"
 }
+
+variable "vpc_id" {
+  description = "VPC ID where the firewall will be created"
+  type        = string
+}
