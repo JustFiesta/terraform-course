@@ -19,3 +19,9 @@ variable "number_of_subnets" {
   type        = number
   default     = 2
 }
+
+variable "availability_zones" {
+  description = "List of availability zones to use for the subnets"
+  type        = list(string)
+  default     = ["eu-west-1a", "eu-west-1b"]
+}

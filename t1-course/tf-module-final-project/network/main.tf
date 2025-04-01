@@ -2,6 +2,8 @@ module "vpc" {
   source       = "./vpc"
   environment  = var.environment
   project_name = var.project_name
+
+  availability_zones = var.availability_zones
 }
 
 module "load_balancer" {

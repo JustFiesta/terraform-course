@@ -10,11 +10,12 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "private" {
   count = var.number_of_subnets
 
-  vpc_id = aws_vpc.main.id
+  vpc_id     = aws_vpc.main.id
   cidr_block = cidrsubnet(var.vpc_cidr, 4, count.index + var.number_of_subnets)
+  availability_zone = element(var.availability_zones, count.index % length(var.availability_zones))
 
   tags = {
-    Name = "${var.project_name}-private-subnet-${count.index}"
+    Name        = "${var.project_name}-private-subnet-${count.index}"
     Environment = var.environment
   }
 }
@@ -22,11 +23,12 @@ resource "aws_subnet" "private" {
 resource "aws_subnet" "public" {
   count = var.number_of_subnets
 
-  vpc_id = aws_vpc.main.id
+  vpc_id     = aws_vpc.main.id
   cidr_block = cidrsubnet(var.vpc_cidr, 4, count.index)
+  availability_zone = element(var.availability_zones, count.index % length(var.availability_zones))
 
   tags = {
-    Name = "${var.project_name}-public-subnet-${count.index}"
+    Name        = "${var.project_name}-public-subnet-${count.index}"
     Environment = var.environment
   }
 }
