@@ -9,7 +9,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "private" {
   vpc_id = aws_vpc.main.id
-  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8)
+  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8, 1)
 
   tags = {
     Name = "${var.project_name}-private-subnet"
@@ -19,7 +19,7 @@ resource "aws_subnet" "private" {
 
 resource "aws_subnet" "public" {
   vpc_id = aws_vpc.main.id
-  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8)
+  cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 8, 1)
 
   tags = {
     Name = "${var.project_name}-public-subnet"
