@@ -24,5 +24,4 @@ module "network" {
   source       = "./network"
   environment  = var.environment
   project_name = var.project_name
-  security_group_ids = module.firewall.main.id
 }
