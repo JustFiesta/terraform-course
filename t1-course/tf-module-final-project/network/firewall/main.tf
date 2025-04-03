@@ -26,7 +26,7 @@ resource "aws_security_group" "lb" {
 resource "aws_security_group" "instance" {
   name        = "${var.project_name}-instance-sg-${var.environment}"
   description = "Security group for instances in ASG"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port       = 80
