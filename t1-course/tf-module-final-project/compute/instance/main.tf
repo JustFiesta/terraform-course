@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "asg" {
   target_group_arns    = [var.target_group_arn]
 
   launch_template {
-    id      = aws_launch_template.instance.id
+    id      = var.environment == "dev" ? aws_launch_template.dev_instance[0].id : aws_launch_template.prod_instance[0].id
     version = "$Latest"
   }
 }
