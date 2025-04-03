@@ -35,6 +35,13 @@ resource "aws_security_group" "instance" {
     security_groups = [aws_security_group.lb.id] # Allow traffic from LB
   }
 
+  ingress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -46,15 +53,4 @@ resource "aws_security_group" "instance" {
     Name        = "${var.project_name}-instance-sg-${var.environment}"
     Environment = var.environment
   }
-}
-
-resource "aws_security_group_rule" "ssh_access" {
-  count = var.environment == "dev" ? 1 : 0
-
-  type        = "ingress"
-  from_port   = 22
-  to_port     = 22
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.instance.id
 }
