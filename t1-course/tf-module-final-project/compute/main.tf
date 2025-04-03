@@ -10,7 +10,7 @@ module "instance" {
   source       = "./instance"
   environment  = var.environment
   project_name = var.project_name
-  ami_id       = module.image.ami_id
+  ami_id       = module.image.golden_ami_id
   target_group_arn = var.target_group_arn
   public_subnets = var.public_subnets
   instance_tags = var.instance_tags
