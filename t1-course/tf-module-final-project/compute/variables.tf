@@ -30,9 +30,18 @@ variable "instance_security_group_ids" {
   type        = list(string)
 }
 
-
 variable "key_name" {
   description = "Key pair name for dev SSH access"
   type        = string
   default     = ""
+}
+
+variable "base_ami_id" {
+  description = "Base AMI ID for the image module"
+  type        = string
+}
+
+variable "golden_ami_user_data" {
+  description = "User data for the golden AMI"
+  type        = string
 }

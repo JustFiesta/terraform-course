@@ -3,7 +3,8 @@ module "image" {
   environment   = var.environment
   project_name  = var.project_name
   instance_tags = var.instance_tags
-  base_ami_id   = "ami-0df368112825f8d8f"
+  base_ami_id   = var.base_ami_id
+  golden_ami_user_data = var.golden_ami_user_data
 }
 
 module "instance" {

@@ -43,6 +43,17 @@ module "compute" {
   subnets          = module.network.private_subnet_ids
   instance_tags    = local.tags
   instance_security_group_ids = [ module.network.instance_sg_id ]
+  base_ami_id      = "ami-01ff9fc7721895c6b"
+  golden_ami_user_data = base64encode(<<-EOF
+    #!/bin/bash
+    yum update -y
+    yum install -y httpd
+    HOSTNAME=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+    echo "<html><body><h1>Instance ID: $HOSTNAME</h1></body></html>" > /var/www/html/index.html
+    systemctl start httpd
+    systemctl enable httpd
+  EOF
+  )
 
   key_name = "mbocak-eu-west-1"
 
