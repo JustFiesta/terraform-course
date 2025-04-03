@@ -69,7 +69,6 @@ resource "aws_internet_gateway" "public" {
 }
 
 resource "aws_route_table" "public" {
-  count  = var.number_of_subnets
   vpc_id = aws_vpc.main.id
 
   route {
@@ -84,7 +83,6 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-  count  = var.number_of_subnets
   vpc_id = aws_vpc.main.id
 
   route {
