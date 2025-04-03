@@ -102,12 +102,12 @@ resource "aws_route_table_association" "public" {
   count = var.number_of_subnets
 
   subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public[count.index % length(var.availability_zones)].id
+  route_table_id = aws_route_table.public[floor(count.index / length(var.availability_zones))].id
 }
 
 resource "aws_route_table_association" "private" {
   count = var.number_of_subnets
 
   subnet_id      = aws_subnet.private[count.index].id
-  route_table_id = aws_route_table.private[count.index % length(var.availability_zones)].id
+  route_table_id = aws_route_table.private[floor(count.index / length(var.availability_zones))].id
 }
