@@ -7,13 +7,13 @@ module "image" {
 }
 
 module "instance" {
-  source       = "./instance"
-  environment  = var.environment
-  project_name = var.project_name
-  ami_id       = module.image.golden_ami_id
+  source           = "./instance"
+  environment      = var.environment
+  project_name     = var.project_name
+  ami_id           = module.image.golden_ami_id
   target_group_arn = var.target_group_arn
-  public_subnets = var.public_subnets
-  instance_tags = var.instance_tags
+  subnets          = var.subnets
+  instance_tags    = var.instance_tags
   instance_security_group_ids = var.instance_security_group_ids
-  key_name = var.key_name
+  key_name         = var.key_name
 }
