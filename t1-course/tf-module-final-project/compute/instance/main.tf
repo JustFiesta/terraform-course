@@ -19,5 +19,11 @@ resource "aws_launch_template" "instance" {
 
   user_data = var.instance_user_data
 
-  tags = var.instance_tags
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = merge(
+      var.instance_tags
+    )
+  }
 }
