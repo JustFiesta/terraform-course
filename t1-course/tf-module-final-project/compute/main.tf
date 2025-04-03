@@ -15,4 +15,5 @@ module "instance" {
   public_subnets = var.public_subnets
   instance_tags = var.instance_tags
   instance_security_group_ids = var.instance_security_group_ids
+  key_name = var.key_name
 }

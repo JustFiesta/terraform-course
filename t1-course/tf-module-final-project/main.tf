@@ -44,5 +44,7 @@ module "compute" {
   instance_tags    = local.tags
   instance_security_group_ids = [ module.network.instance_sg_id ]
 
+  key_name = "mbocak-eu-west-1"
+
   depends_on = [ module.network ]
 }

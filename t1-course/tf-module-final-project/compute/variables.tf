@@ -29,3 +29,10 @@ variable "instance_security_group_ids" {
   description = "Security group ID for the instance"
   type        = list(string)
 }
+
+
+variable "key_name" {
+  description = "Key pair name for dev SSH access"
+  type        = string
+  default     = ""
+}
