@@ -48,10 +48,15 @@ module "compute" {
     #!/bin/bash
     yum update -y
     yum install -y httpd
-    HOSTNAME=$(hostname)
-    echo "<html><body><h1>Instance ID: $HOSTNAME</h1></body></html>" > /var/www/html/index.html
     systemctl start httpd
     systemctl enable httpd
+  EOF
+  )
+  instance_user_data = base64encode(<<-EOF
+    #!/bin/bash
+    HOSTNAME=$(hostname)
+    echo "<html><body><h1>Instance ID: $HOSTNAME</h1></body></html>" > /var/www/html/index.html
+    systemctl restart httpd
   EOF
   )
 

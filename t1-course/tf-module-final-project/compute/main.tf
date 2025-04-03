@@ -17,4 +17,5 @@ module "instance" {
   instance_tags    = var.instance_tags
   instance_security_group_ids = var.instance_security_group_ids
   key_name         = var.key_name
+  instance_user_data = var.instance_user_data
 }

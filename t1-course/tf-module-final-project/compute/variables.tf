@@ -45,3 +45,8 @@ variable "golden_ami_user_data" {
   description = "User data for the golden AMI"
   type        = string
 }
+
+variable "instance_user_data" {
+  description = "User data for the webserver instances"
+  type        = string
+}

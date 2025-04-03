@@ -39,7 +39,6 @@ variable "subnets" {
 variable "instance_user_data" {
   description = "User data script for the instance"
   type        = string
-  default     = ""
 }
 
 variable "instance_security_group_ids" {
