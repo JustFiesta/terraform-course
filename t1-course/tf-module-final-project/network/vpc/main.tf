@@ -8,10 +8,10 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "private" {
-  count = var.number_of_subnets
+  count = length(var.availability_zones)
 
   vpc_id     = aws_vpc.main.id
-  cidr_block = cidrsubnet(var.vpc_cidr, 4, count.index + var.number_of_subnets)
+  cidr_block = cidrsubnet(var.vpc_cidr, 4, count.index + length(var.availability_zones))
   availability_zone = element(var.availability_zones, count.index % length(var.availability_zones))
 
   map_public_ip_on_launch = false
@@ -23,7 +23,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_subnet" "public" {
-  count = var.number_of_subnets
+  count = length(var.availability_zones)
 
   vpc_id     = aws_vpc.main.id
   cidr_block = cidrsubnet(var.vpc_cidr, 4, count.index)
@@ -38,21 +38,21 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_eip" "nat" {
-  count = var.number_of_subnets
+  count = length(var.availability_zones)
 
   tags = {
-    Name        = "${var.project_name}-nat-eip-${count.index}-${var.environment}"
+    Name        = "${var.project_name}-nat-eip-${count.index}"
     Environment = var.environment
   }
 }
 
 resource "aws_nat_gateway" "main" {
-  count = var.number_of_subnets
+  count = length(var.availability_zones)
   allocation_id = aws_eip.nat[count.index].id
   subnet_id     = aws_subnet.public[count.index].id
 
   tags = {
-    Name        = "${var.project_name}-nat-${count.index}-${var.environment}"
+    Name        = "${var.project_name}-nat-${count.index}"
     Environment = var.environment
   }
 
@@ -69,6 +69,7 @@ resource "aws_internet_gateway" "public" {
 }
 
 resource "aws_route_table" "public" {
+  count  = length(var.availability_zones)
   vpc_id = aws_vpc.main.id
 
   route {
@@ -83,6 +84,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
+  count  = length(var.availability_zones)
   vpc_id = aws_vpc.main.id
 
   route {
@@ -97,15 +99,15 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route_table_association" "public" {
-  count = var.number_of_subnets
+  count = length(var.availability_zones)
 
   subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public[floor(count.index / length(var.availability_zones))].id
+  route_table_id = aws_route_table.public[count.index].id
 }
 
 resource "aws_route_table_association" "private" {
-  count = var.number_of_subnets
+  count = length(var.availability_zones)
 
   subnet_id      = aws_subnet.private[count.index].id
-  route_table_id = aws_route_table.private[floor(count.index / length(var.availability_zones))].id
+  route_table_id = aws_route_table.private[count.index].id
 }

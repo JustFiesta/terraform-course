@@ -14,12 +14,6 @@ variable "environment" {
   description = "Environment for the resources"
 }
 
-variable "number_of_subnets" {
-  description = "Number of subnets of each type to create (cannot be less than 2, due to LB requirements)"
-  type        = number
-  default     = 2
-}
-
 variable "availability_zones" {
   description = "List of availability zones to use for the subnets"
   type        = list(string)
