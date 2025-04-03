@@ -20,22 +20,28 @@ provider "aws" {
   }
 }
 
-module "network" {
-  source       = "./network"
-  environment  = var.environment
-  project_name = var.project_name
-  availability_zones = [ "eu-west-1a", "eu-west-1b", "eu-west-1c" ]
-}
-
-module "compute" {
-  source       = "./compute"
-  environment  = var.environment
-  project_name = var.project_name
-  target_group_arn = module.network.target_group_arn
-  public_subnets = module.network.public_subnet_ids
-  instance_tags = {
+locals {
+  tags = {
     Name      = "${var.project_name}-${var.environment}-instance"
     Owner     = "mbocak"
     Project   = "${var.project_name}"
   }
+}
+
+module "network" {
+  source             = "./network"
+  environment        = var.environment
+  project_name       = var.project_name
+  availability_zones = [ "eu-west-1a", "eu-west-1b", "eu-west-1c" ]
+}
+
+module "compute" {
+  source           = "./compute"
+  environment      = var.environment
+  project_name     = var.project_name
+  target_group_arn = module.network.target_group_arn
+  public_subnets   = module.network.public_subnet_ids
+  instance_tags    = local.tags
+
+  depends_on = [ module.network ]
 }
