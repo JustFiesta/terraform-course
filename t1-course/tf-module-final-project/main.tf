@@ -40,7 +40,7 @@ module "compute" {
   environment      = var.environment
   project_name     = var.project_name
   target_group_arn = module.network.target_group_arn
-  public_subnets   = module.network.public_subnet_ids
+  subnets          = module.network.private_subnet_ids
   instance_tags    = local.tags
   instance_security_group_ids = [ module.network.instance_sg_id ]
 

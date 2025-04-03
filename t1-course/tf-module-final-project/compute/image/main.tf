@@ -2,7 +2,10 @@ resource "aws_instance" "tmp_golden_instance" {
   ami           = var.base_ami_id
   instance_type = "t3.medium"
   user_data     = var.golden_ami_user_data
-  tags = var.instance_tags
+  tags = merge(
+    var.instance_tags,
+    { Name = "${var.project_name}-${var.environment}-tmp-golden-ami-instance" }
+  )
 
   lifecycle {
     create_before_destroy = true

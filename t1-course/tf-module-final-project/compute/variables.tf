@@ -15,8 +15,8 @@ variable "target_group_arn" {
   type        = string  
 }
 
-variable "public_subnets" {
-  description = "List of public subnet IDs"
+variable "subnets" {
+  description = "Subnets to launch the instances in"
   type        = list(string)
 }
 
