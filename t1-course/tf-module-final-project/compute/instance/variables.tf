@@ -41,3 +41,8 @@ variable "instance_user_data" {
   type        = string
   default     = ""
 }
+
+variable "instance_security_group_ids" {
+  description = "Security group ID for the instance"
+  type        = list(string)
+}

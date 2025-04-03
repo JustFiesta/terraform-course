@@ -24,3 +24,8 @@ variable "instance_tags" {
   description = "Tags for the instance"
   type        = map(string)
 }
+
+variable "instance_security_group_ids" {
+  description = "Security group ID for the instance"
+  type        = list(string)
+}

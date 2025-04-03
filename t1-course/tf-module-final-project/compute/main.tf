@@ -14,4 +14,5 @@ module "instance" {
   target_group_arn = var.target_group_arn
   public_subnets = var.public_subnets
   instance_tags = var.instance_tags
+  instance_security_group_id = var.instance_security_group_ids
 }

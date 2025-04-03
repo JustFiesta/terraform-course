@@ -20,7 +20,7 @@ resource "aws_launch_template" "instance" {
   user_data = var.instance_user_data
 
   network_interfaces {
-    security_groups = [ aws_security_group.instance.id ]
+    security_groups = var.instance_security_group_ids
   }
 
   tag_specifications {

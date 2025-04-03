@@ -23,7 +23,7 @@ output "private_subnet_ids" {
   value       = module.vpc.private_subnet_ids
 }
 
-output "instance_security_group_id" {
-  description = "The ID of instance security group"
-  value       = module.vpc.instance_security_group_id
+output "instance_sg_id" {
+  description = "ID of the instance security group"
+  value       = module.firewall.instance_sg_id
 }

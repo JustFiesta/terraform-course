@@ -12,7 +12,7 @@ module "load_balancer" {
   project_name       = var.project_name
   vpc_id             = module.vpc.vpc_id
   subnets            = module.vpc.public_subnet_ids
-  security_group_ids = [module.vpc.lb_security_group_id]
+  security_group_ids = [module.firewall.lb_sg_id]
 
   depends_on = [module.vpc]
 }

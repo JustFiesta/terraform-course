@@ -2,7 +2,7 @@ resource "aws_lb" "main" {
   name               = "${var.project_name}-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.lb.id]
+  security_groups    = var.security_group_ids
   subnets            = var.subnets
 
   enable_deletion_protection = false
