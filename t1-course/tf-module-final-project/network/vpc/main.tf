@@ -69,6 +69,7 @@ resource "aws_internet_gateway" "public" {
 }
 
 resource "aws_route_table" "public" {
+  count  = var.number_of_subnets
   vpc_id = aws_vpc.main.id
 
   route {
@@ -101,6 +102,14 @@ resource "aws_route_table_association" "public" {
   count = var.number_of_subnets
 
   subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public.id
+}
+
+# when in dev environment assosiate public routing into private subnet for debugging
+resource "aws_route_table_association" "private_to_public_igw" {
+  count = var.environment == "dev" ? var.number_of_subnets : 0
+
+  subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.public.id
 }
 
