@@ -33,4 +33,9 @@ module "compute" {
   project_name = var.project_name
   target_group_arn = module.network.target_group_arn
   public_subnets = module.network.public_subnet_ids
+  instance_tags = {
+    Name      = "${var.project_name}-${var.environment}-instance"
+    Owner     = "mbocak"
+    Project   = "${var.project_name}"
+  }
 }

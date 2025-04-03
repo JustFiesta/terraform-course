@@ -23,9 +23,4 @@ variable "public_subnets" {
 variable "instance_tags" {
   description = "Tags for the instance"
   type        = map(string)
-  default     = {
-    Name      = "${var.project_name}-${var.environment}-instance"
-    Owner     = "mbocak"
-    Project   = "${var.project_name}"
-  }
 }
