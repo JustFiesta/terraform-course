@@ -105,14 +105,6 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public[count.index % length(var.availability_zones)].id
 }
 
-# when in dev environment assosiate public routing into private subnet for debugging
-resource "aws_route_table_association" "private_to_public_igw" {
-  count = var.environment == "dev" ? var.number_of_subnets : 0
-
-  subnet_id      = aws_subnet.private[count.index].id
-  route_table_id = aws_route_table.public[count.index % length(var.availability_zones)].id
-}
-
 resource "aws_route_table_association" "private" {
   count = var.number_of_subnets
 
