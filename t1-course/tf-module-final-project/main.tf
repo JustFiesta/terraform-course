@@ -48,7 +48,7 @@ module "compute" {
     #!/bin/bash
     yum update -y
     yum install -y httpd
-    HOSTNAME=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+    HOSTNAME=$(hostname)
     echo "<html><body><h1>Instance ID: $HOSTNAME</h1></body></html>" > /var/www/html/index.html
     systemctl start httpd
     systemctl enable httpd
@@ -56,6 +56,4 @@ module "compute" {
   )
 
   key_name = "mbocak-eu-west-1"
-
-  depends_on = [ module.network ]
 }
